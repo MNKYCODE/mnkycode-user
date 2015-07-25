@@ -8,6 +8,17 @@
   npm install -S mnkycode-user
 ````
 
+## Requirements
+
+You need a running mongoose instance like:
+
+````
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/testing', {}, function (err) {
+  if(err) throw err;
+});
+````
+
 
 ## Usage
 
