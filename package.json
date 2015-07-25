@@ -1,0 +1,32 @@
+{
+  "name": "mnkycode-user",
+  "version": "1.0.0",
+  "description": "MNKYCODE User Module",
+  "main": "index.js",
+  "keywords": [
+    "user",
+    "mnkycode",
+    "utility",
+    "module"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HashDot/mnkycode-user.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HashDot/mnkycode-user/issues"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Lars Hampe",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^5.0.4",
+    "mongoose": "^4.0.7"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  }
+}
