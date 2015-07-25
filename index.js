@@ -49,9 +49,9 @@ User.prototype.create = function(cb){
   };
 
   db.
-      find({ username: _this.username }).
-      limit(1).
-      exec(callback);
+    find({ username: _this.username }).
+    limit(1).
+    exec(callback);
 };
 
 User.prototype.read = function(cb){
@@ -66,9 +66,9 @@ User.prototype.read = function(cb){
   };
 
   db.
-      find({ token: _this.token }, { password: 0 }).
-      limit(1).
-      exec(callback);
+    find({ token: _this.token }, { password: 0 }).
+    limit(1).
+    exec(callback);
 
 };
 
@@ -92,9 +92,9 @@ User.prototype.update = function(cb){
   }
 
   db.
-      find({ token: _this.token }).
-      limit(1).
-      exec(callback);
+    find({ token: _this.token }).
+    limit(1).
+    exec(callback);
 
 };
 
@@ -107,8 +107,8 @@ User.prototype.delete = function(cb){
   };
 
   db.
-      findOne({ token: _this.token }).
-      remove(callback);
+    findOne({ token: _this.token }).
+    remove(callback);
 
 };
 
