@@ -1,5 +1,7 @@
 # MNKYCODE - User Module
 
+[![Build Status](https://travis-ci.org/HashDot/mnkycode-user.svg?branch=master)](https://travis-ci.org/HashDot/mnkycode-user)
+
 ## Install
 
 ````
