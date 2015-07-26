@@ -5,6 +5,8 @@
 [![Code Climate](https://codeclimate.com/github/HashDot/mnkycode-user/badges/gpa.svg)](https://codeclimate.com/github/HashDot/mnkycode-user)
 [![Test Coverage](https://codeclimate.com/github/HashDot/mnkycode-user/badges/coverage.svg)](https://codeclimate.com/github/HashDot/mnkycode-user/coverage)
 
+[![NPM](https://nodei.co/npm/mnkycode-user.png)](https://nodei.co/npm/mnkycode-user/)
+
 
 ## Install
 
