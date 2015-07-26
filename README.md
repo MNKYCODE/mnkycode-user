@@ -1,6 +1,10 @@
 # MNKYCODE - User Module
 
 [![Build Status](https://travis-ci.org/HashDot/mnkycode-user.svg?branch=master)](https://travis-ci.org/HashDot/mnkycode-user)
+[![Dependencies](https://david-dm.org/HashDot/mnkycode-user.svg)](https://david-dm.org/HashDot/mnkycode-user)
+[![Code Climate](https://codeclimate.com/github/HashDot/mnkycode-user/badges/gpa.svg)](https://codeclimate.com/github/HashDot/mnkycode-user)
+[![Test Coverage](https://codeclimate.com/github/HashDot/mnkycode-user/badges/coverage.svg)](https://codeclimate.com/github/HashDot/mnkycode-user/coverage)
+
 
 ## Install
 
