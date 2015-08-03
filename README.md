@@ -104,6 +104,43 @@ mongoose.connect('mongodb://localhost/testing', {}, function (err) {
     })
 ````
 
+#### Login User
+
+````
+	var User = require('mnkycode-user')
+	var data = {
+      displayname: UserDisplayname,
+      password: UserPassword
+    };
+    var user = new User(data);
+    user.login(function(code, data){
+      // on success 
+      //   code = 200
+      //   data = json object 
+      // on exist
+      //    code = 400
+      //    data = null
+    })
+````
+
+#### Logout User
+
+````
+	var User = require('mnkycode-user')
+	var data = {
+      displayname: UserDisplayname,
+      password: UserPassword
+    };
+    var user = new User(data);
+    user.logout(function(code, data){
+      // on success 
+      //   code = 200
+      //   data = true 
+      // on exist
+      //    code = 400
+      //    data = null
+    })
+````
 
 ## Schema
 
