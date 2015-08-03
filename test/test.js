@@ -24,6 +24,17 @@ describe('User', function () {
       code.should.equal(201);
       item.displayname.should.equal(data.displayname);
       item.email.should.equal(data.email);
+      done();
+    })
+  });
+
+  it('Login', function(done){
+    var user = new User(data);
+    user.login(function(code, item){
+      code.should.equal(200);
+      item.displayname.should.equal(data.displayname);
+      item.email.should.equal(data.email);
+      item.token.should.be.type('string');
       token = item.token;
       done();
     })
@@ -62,6 +73,48 @@ describe('User', function () {
     });
   });
 
+  it('Update', function(done){
+    update = {
+      token: token,
+      email: 'test@user.io'
+    };
+    var user = new User(update);
+    user.update(function(code, item){
+      code.should.equal(200);
+      item.displayname.should.equal(data.displayname);
+      item.email.should.equal(update.email);
+      done();
+    })
+  });
+
+  it('Logout', function(done){
+    var user = new User({ token: token });
+    user.logout(function(code){
+      code.should.equal(200);
+      done();
+    });
+  });
+
+  it('Check Logout', function(done){
+    var user = new User({ token: token });
+    user.logout(function(code){
+      code.should.equal(400);
+      done();
+    });
+  });
+
+  it('Login for Delete', function(done){
+    var user = new User({ displayname: 'TestUser', password: '12351235'});
+    user.login(function(code, item){
+      code.should.equal(200);
+      item.displayname.should.equal(data.displayname);
+      item.email.should.equal(data.email);
+      item.token.should.be.type('string');
+      token = item.token;
+      done();
+    })
+  });
+
   it('Delete', function(done){
     var user = new User({ token: token });
     user.delete(function(code){
@@ -71,7 +124,7 @@ describe('User', function () {
   });
 
   it('Check Delete', function(done){
-    var user = new User({ token: token });
+    var user = new User({ displayname: data.displayname });
     user.read(function(code){
       code.should.equal(400);
       done();
