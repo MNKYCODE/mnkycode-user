@@ -131,9 +131,9 @@ User.prototype.login = function(cb){
   }
 
   db.
-      find({ username: _this.username, password: _this.password }, { password: 0 }).
-      limit(1).
-      exec(callback);
+    find({ username: _this.username, password: _this.password }, { password: 0 }).
+    limit(1).
+    exec(callback);
 
 };
 
@@ -150,15 +150,15 @@ User.prototype.logout = function(cb){
     }
   };
 
-  var save = function(err, item){
+  var save = function(err){
     if (err) throw err;
-    cb(200, item);
+    cb(200, true);
   }
 
   db.
-      find({ token: _this.token }).
-      limit(1).
-      exec(callback);
+    find({ token: _this.token }).
+    limit(1).
+    exec(callback);
 
 };
 
