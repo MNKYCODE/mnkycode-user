@@ -38,7 +38,6 @@ User.prototype.create = function(cb){
       newUser.username = _this.username;
       newUser.email = _this.email;
       newUser.password = _this.password;
-      newUser.token = jwt.sign(_this.data, _this.password);
       newUser.save(save);
     }
   };
@@ -49,9 +48,9 @@ User.prototype.create = function(cb){
   };
 
   db.
-    find({ username: _this.username }).
-    limit(1).
-    exec(callback);
+      find({ username: _this.username }).
+      limit(1).
+      exec(callback);
 };
 
 User.prototype.read = function(cb){
@@ -66,9 +65,9 @@ User.prototype.read = function(cb){
   };
 
   db.
-    find({ token: _this.token }, { password: 0 }).
-    limit(1).
-    exec(callback);
+      find({ token: _this.token }, { password: 0 }).
+      limit(1).
+      exec(callback);
 
 };
 
@@ -92,9 +91,9 @@ User.prototype.update = function(cb){
   }
 
   db.
-    find({ token: _this.token }).
-    limit(1).
-    exec(callback);
+      find({ token: _this.token }).
+      limit(1).
+      exec(callback);
 
 };
 
@@ -107,8 +106,58 @@ User.prototype.delete = function(cb){
   };
 
   db.
-    findOne({ token: _this.token }).
-    remove(callback);
+      findOne({ token: _this.token }).
+      remove(callback);
+
+};
+
+User.prototype.login = function(cb){
+  var _this = this;
+
+  var callback = function(err, item){
+    if (err) throw err;
+    if(item[0]){
+      item[0].token = jwt.sign(_this.data, _this.password);
+      item[0].save(save);
+    }else{
+      cb(400, null);
+    }
+  };
+
+  var save = function(err, item){
+    if (err) throw err;
+    cb(200, item);
+  }
+
+  db.
+      find({ username: _this.username, password: _this.password }, { password: 0 }).
+      limit(1).
+      exec(callback);
+
+};
+
+User.prototype.logout = function(cb){
+  var _this = this;
+
+  var callback = function(err, item){
+    if (err) throw err;
+    if(item[0]){
+      item[0].token = '';
+      item[0].save(save);
+    }else{
+      cb(400, null);
+    }
+  };
+
+  var save = function(err, item){
+    if (err) throw err;
+    cb(200, item);
+  }
+
+  db.
+      find({ token: _this.token }).
+      limit(1).
+      exec(callback);
 
 };
 
