@@ -20,7 +20,6 @@ function User(data){
     this.token = data.token;
   }
   if(data){
-    delete data.password;
     this.data = data;
   }
 }
@@ -65,7 +64,7 @@ User.prototype.read = function(cb){
   };
 
   db.
-      find({ token: _this.token }, { password: 0 }).
+      find({ $or: [ { token: _this.token }, { username: _this.username }, { displayname: _this.displayname }, { email: _this.email } ] }, { password: 0 }).
       limit(1).
       exec(callback);
 
@@ -114,9 +113,11 @@ User.prototype.delete = function(cb){
 User.prototype.login = function(cb){
   var _this = this;
 
+
   var callback = function(err, item){
     if (err) throw err;
     if(item[0]){
+      delete _this.data.password;
       item[0].token = jwt.sign(_this.data, _this.password);
       item[0].save(save);
     }else{
