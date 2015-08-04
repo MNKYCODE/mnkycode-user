@@ -64,7 +64,7 @@ User.prototype.read = function(cb){
   };
 
   db.
-      find({ $or: [ { token: _this.token }, { username: _this.username }, { displayname: _this.displayname }, { email: _this.email } ] }, { password: 0 }).
+      find({ $or: [ { token: _this.token }, { username: _this.username }, { displayname: _this.displayname }, { email: _this.email } ] }, { password: 0, token: 0 }).
       limit(1).
       exec(callback);
 
