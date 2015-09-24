@@ -9,7 +9,6 @@ function User(data){
     this.displayname = data.displayname;
     this.username = data.displayname.toLowerCase();
   }
-
   if(data.displayname && data.password){
     this.password = crypto.pbkdf2Sync(data.password, data.displayname.toLowerCase(), 4096, 512/4, 'sha256').toString('hex');
   }
@@ -47,9 +46,9 @@ User.prototype.create = function(cb){
   };
 
   db.
-      find({ username: _this.username }).
-      limit(1).
-      exec(callback);
+    find({ $or: [ { username: _this.username, email: _this.email } ] }).
+    limit(1).
+    exec(callback);
 };
 
 User.prototype.read = function(cb){
@@ -64,9 +63,9 @@ User.prototype.read = function(cb){
   };
 
   db.
-      find({ $or: [ { token: _this.token }, { username: _this.username }, { displayname: _this.displayname }, { email: _this.email } ] }, { password: 0, token: 0 }).
-      limit(1).
-      exec(callback);
+    find({ $or: [ { token: _this.token }, { username: _this.username }, { displayname: _this.displayname }, { email: _this.email } ] }, { password: 0, token: 0 }).
+    limit(1).
+    exec(callback);
 
 };
 
@@ -90,9 +89,9 @@ User.prototype.update = function(cb){
   }
 
   db.
-      find({ token: _this.token }).
-      limit(1).
-      exec(callback);
+    find({ token: _this.token }).
+    limit(1).
+    exec(callback);
 
 };
 
@@ -105,8 +104,8 @@ User.prototype.delete = function(cb){
   };
 
   db.
-      findOne({ token: _this.token }).
-      remove(callback);
+    findOne({ token: _this.token }).
+    remove(callback);
 
 };
 
@@ -131,7 +130,7 @@ User.prototype.login = function(cb){
   }
 
   db.
-    find({ username: _this.username, password: _this.password }, { password: 0 }).
+    find({ username: _this.username, password: _this.password, 'rights.user.login': true }, { password: 0 }).
     limit(1).
     exec(callback);
 
@@ -167,5 +166,3 @@ User.prototype.Schema = db;
 
 // Export User Prototype
 module.exports = User;
-
-
